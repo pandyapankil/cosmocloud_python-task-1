@@ -34,9 +34,10 @@ list_2 = [
 	},
 ]
 
-
 STUDENT_ID = str
 STUDENT_INFO = typing.Dict
+
+
 def merge_lists(list_1: typing.List[STUDENT_INFO], list_2: typing.List[STUDENT_INFO]) -> typing.List[STUDENT_INFO]:
 	"""
 	Complete this function, by merging the information from list_1 and list_2
@@ -46,13 +47,13 @@ def merge_lists(list_1: typing.List[STUDENT_INFO], list_2: typing.List[STUDENT_I
 	- Both lists are unsorted
 	- Both lists can have missing values (for ex list_2 has missing id=2)
 	"""
-	id_data_mapper: typing.DefaultDict[STUDENT_ID, STUDENT_INFO] = collections.defaultdict(dict)
+	student_id__student_info__mapper: typing.DefaultDict[STUDENT_ID, STUDENT_INFO] = collections.defaultdict(dict)
 	for data in list_1 + list_2:
 		id = data["id"]
-		mapper_data = id_data_mapper[id]
+		mapper_data = student_id__student_info__mapper[id]
 		mapper_data.update(data)
 
-	list_3: typing.List[STUDENT_INFO] = list(id_data_mapper.values())
+	list_3: typing.List[STUDENT_INFO] = list(student_id__student_info__mapper.values())
 	## uncomment below line if want a sorted result based on student id
 	# list_3.sort(key=lambda x: x["id"])
 	return list_3
