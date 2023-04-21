@@ -1,3 +1,6 @@
+import collections
+import typing
+
 list_1 = [
 	{
 		"id": "1",
@@ -32,16 +35,23 @@ list_2 = [
 ]
 
 
-def merge_lists(list_1, list_2) -> list:
+def merge_lists(list_1: typing.List, list_2: typing.List) -> typing.List:
 	"""
-    Complete this function, by merging the information from list_1 and list_2
-    to create a new list, which has all the information about each student from
-    both lists in one single dict.
+	Complete this function, by merging the information from list_1 and list_2
+	to create a new list, which has all the information about each student from
+	both lists in one single dict.
 
-    - Both lists are unsorted
-    - Both lists can have missing values (for ex list_2 has missing id=2)
-    """
-	# return list_3
+	- Both lists are unsorted
+	- Both lists can have missing values (for ex list_2 has missing id=2)
+	"""
+	id_data_mapper = collections.defaultdict(dict)
+	for data in list_1 + list_2:
+		id = data["id"]
+		mapper_data = id_data_mapper[id]
+		mapper_data.update(data)
+
+	return id_data_mapper.values()
 
 
 list_3 = merge_lists(list_1, list_2)
+print(list_3)
